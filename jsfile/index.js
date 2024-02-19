@@ -111,4 +111,5 @@ function clear_func(){
     document.getElementById('name_input').value = null;
     document.getElementById('mail_input').value = null;
     document.getElementById('my_modal_5').classList.add('hidden');
+    document.getElementById('remove_disable').disabled = true;
 }
