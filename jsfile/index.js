@@ -58,6 +58,7 @@ for (let seat_index = 0; seat_index < all_seats.length; seat_index++){
             add_before_sibling.insertBefore(div_element, get_sibling);
             total_price += 550;
             document.getElementById('price_total').innerText = total_price;
+            document.getElementById('grand_total').innerText = total_price;
             var enable_btn = document.getElementById('btn_enable');
             if(seat_count === 4){
                 enable_btn.removeAttribute('disabled');
@@ -90,14 +91,20 @@ function coupon_discount(){
 
 document.getElementById('num_input').addEventListener('keyup',function(event){
     var num_value = event.target.value;
-    if (seat_array.length >= 1 && num_value != null){
-        document.getElementById('remove_disable').removeAttribute('disabled');
+    var isNumber = /^-?\d*\.?\d*$/.test(num_value);
+    if (seat_array.length >= 1 && isNumber){
+        document.getElementById('remove_disable').disabled = false;
+        //document.getElementById('remove_disable').removeAttribute('disabled');
         document.getElementById('my_modal_5').classList.remove('hidden');
+        if (document.getElementById('num_input').value === "") {
+            document.getElementById('remove_disable').disabled = true;
+        }
     }
     else{
-        alert("Please select atleast one seat first");
+        alert("Please select atleast one seat first and Only Number is Allowed");
     }
 })
+
 
 function clear_func(){
     document.getElementById('num_input').value = null;
